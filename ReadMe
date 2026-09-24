@@ -145,3 +145,168 @@ Feature Importance & Error Analysis
 Candidate Model
         ↓
 Deployment Preparation
+🧠 Machine Learning Models
+
+The following classification approaches were evaluated:
+
+Logistic Regression
+Decision Tree
+Random Forest
+Gradient Boosting
+Hard Voting Classifier
+Soft Voting Classifier
+
+Hyperparameter optimization was performed using GridSearchCV with 5-fold cross-validation, with F1-score used as the tuning objective.
+
+📈 Model Performance
+Test-Set Performance
+Model	Accuracy	Precision	Recall	F1-Score	ROC-AUC
+Logistic Regression	69.35%	4.83%	45.45%	8.73%	63.95%
+Decision Tree	81.52%	11.76%	72.73%	20.25%	77.27%
+Random Forest	87.10%	18.27%	86.36%	30.16%	94.55%
+Gradient Boosting	87.10%	18.27%	86.36%	30.16%	94.53%
+Tuned Logistic Regression	69.57%	4.87%	45.45%	8.79%	64.08%
+Tuned Decision Tree	85.41%	15.56%	79.55%	26.02%	85.50%
+Tuned Random Forest	87.24%	18.45%	86.36%	30.40%	94.51%
+Tuned Gradient Boosting	86.07%	17.41%	88.64%	29.10%	94.47%
+Hard Voting Classifier	89.30%	19.64%	75.00%	31.13%	—
+Soft Voting Classifier	85.48%	15.62%	79.55%	26.12%	92.56%
+
+Performance should be interpreted in the context of the highly imbalanced target variable and the different costs associated with false positives and false negatives.
+
+🌲 Candidate Model
+
+The Tuned Random Forest was retained as the current candidate model for deployment evaluation.
+
+Candidate Model — Test Performance
+Metric	Result
+Accuracy	87.24%
+Precision	18.45%
+Recall	86.36%
+F1-Score	30.40%
+ROC-AUC	94.51%
+PR-AUC	38.71%
+
+The candidate designation reflects the need to consider multiple performance metrics and business requirements rather than selecting a model using a single metric.
+
+🔍 Important Financial Indicators
+
+Tree-based feature importance identified the following indicators among the most influential predictors:
+
+Persistent EPS in the Last Four Seasons
+Borrowing Dependency
+Non-industry income and expenditure/revenue
+Retained Earnings to Total Assets
+Total debt/Total net worth
+Equity to Liability
+Net Income to Stockholder's Equity
+Net Value Per Share (B)
+Quick Ratio
+ROA(C) before interest and depreciation before tax
+
+Feature importance represents predictive contribution within the model and should not be interpreted as evidence of causation.
+
+📊 Business Insights
+
+The analysis indicates that multiple dimensions of financial health can contribute to bankruptcy-risk prediction.
+
+Key areas include:
+
+Earnings and profitability
+Borrowing and leverage
+Retained earnings
+Equity and liabilities
+Liquidity
+Per-share financial measures
+Overall asset and capital structure
+
+The model is intended as a decision-support tool, rather than a replacement for financial due diligence or professional judgment.
+
+⚠️ Model Risks & Limitations
+
+Potential limitations include:
+
+Undersampling may remove useful information from the majority class.
+Highly correlated financial indicators can affect model interpretation.
+Historical financial relationships may change over time.
+Economic conditions can alter bankruptcy patterns.
+Industry and regulatory changes may affect model performance.
+False positives and false negatives can have different financial consequences.
+Model predictions should not be used as the sole basis for high-impact financial decisions.
+Continuous monitoring and periodic model validation would be required in a production environment.
+📊 Power BI Dashboard
+
+A Power BI dashboard was developed to provide an interactive view of:
+
+Company-level bankruptcy distribution
+Bankruptcy rate
+Financial indicator comparisons
+Model performance
+Important financial indicators
+Candidate model metrics
+🛠️ Technology Stack
+
+Programming & Analysis
+
+Python
+Pandas
+NumPy
+
+Visualization
+
+Matplotlib
+Seaborn
+Power BI
+
+Machine Learning
+
+Scikit-learn
+Imbalanced-learn
+
+Development
+
+Jupyter Notebook
+GitHub
+Streamlit
+📁 Project Structure
+predicting-company-bankruptcies/
+│
+├── Predicting_Company_Bankruptcies.ipynb
+├── requirements.txt
+├── README.md
+│
+├── app.py
+│
+└── Models/
+    ├── tuned_random_forest_candidate.joblib
+    └── selected_features.joblib
+🚀 Deployment
+
+The project is being prepared for interactive deployment using Streamlit.
+
+The deployed application will load the trained model and allow users to explore bankruptcy-risk predictions using financial indicators.
+
+The deployment workflow is designed to use the validated saved model rather than retraining the model inside the application.
+
+📌 Reproducibility
+
+The project includes a requirements.txt file specifying the main Python dependencies used for the analysis.
+
+A fixed random seed was used in the modelling workflow where applicable to support reproducibility.
+
+👩‍💻 Project
+
+Predicting Company Bankruptcies
+
+Focus: Financial Risk Analysis & Machine Learning
+
+Tools: Python • Scikit-learn • Power BI • Streamlit • Jupyter Notebook
+
+⚠️ Disclaimer
+
+This project is developed for analytical, educational, and portfolio purposes. Bankruptcy predictions are model-based estimates and should not be treated as definitive financial advice or as the sole basis for lending, investment, or other high-impact decisions.
+
+
+
+
+
