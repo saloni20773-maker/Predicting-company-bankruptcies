@@ -1,104 +1,147 @@
-# Predicting Company Bankruptcies #
+# Predicting Company Bankruptcies
 
-## Project Overview ##
+### Financial Risk Analysis & Machine Learning
 
-This project develops a machine learning approach for predicting company bankruptcy using financial indicators.
+An end-to-end machine learning project for predicting company bankruptcy using financial indicators. The project combines exploratory data analysis, feature selection, class-imbalance handling, comparative machine learning, ensemble methods, hyperparameter optimization, model evaluation, explainability, and business-oriented risk analysis.
 
-The objective is to identify financial patterns associated with bankruptcy risk and compare multiple classification algorithms.
+---
 
-## Dataset
+## 📌 Project Overview
 
-- Total companies: 6,819
-- Original predictors: 95
-- Target variable: `Bankrupt?`
-- Bankrupt companies: 220
-- Non-bankrupt companies: 6,599
-- Class imbalance: approximately 30:1
+Company bankruptcy prediction is an important financial risk-management problem. Early identification of financially distressed companies can support further assessment in areas such as lending, investment analysis, and portfolio risk management.
 
-The dataset contains financial indicators covering areas such as profitability, growth, liquidity, leverage, efficiency, cash flow, and working capital.
+This project develops and evaluates machine learning classification models to identify companies with a higher likelihood of bankruptcy based on historical financial indicators.
 
-## Methodology
+The analysis focuses not only on predictive performance but also on model interpretability, class imbalance, potential deployment risks, and practical business considerations.
 
-The project includes:
+---
 
-- Exploratory Data Analysis (EDA)
-- Data quality checks
-- Correlation analysis
-- Multicollinearity analysis
-- Feature selection
-- Class imbalance handling using training-only undersampling
-- Multiple classification algorithms
-- Hard and soft voting classifiers
-- Hyperparameter optimization using GridSearchCV
-- Model evaluation using multiple classification metrics
-- Feature importance analysis
-- Error analysis and model-risk discussion
+## 🎯 Project Objectives
 
-## Machine Learning Models
+The main objectives of this project are to:
 
-The project compares:
+- Explore financial indicators associated with company bankruptcy.
+- Identify important predictors using correlation analysis and model-based feature importance.
+- Address the severe class imbalance in the dataset.
+- Compare multiple machine learning classification algorithms.
+- Improve model performance through hyperparameter optimization.
+- Evaluate ensemble approaches using voting classifiers.
+- Analyze model errors and potential real-world risks.
+- Develop a reproducible machine learning workflow.
+- Provide business-oriented insights for financial risk analysis.
 
-- Logistic Regression
-- Decision Tree
-- Random Forest
-- Gradient Boosting
-- Hard Voting Classifier
-- Soft Voting Classifier
+---
 
-## Model Evaluation
+## ❓ Key Questions
 
-The models are evaluated using:
+This project addresses three main questions:
 
-- Accuracy
-- Precision
-- Recall
-- F1-Score
-- ROC-AUC
-- PR-AUC where applicable
+1. Which financial indicators are significant predictors of bankruptcy?
+2. How does model performance compare across different machine learning algorithms?
+3. What are the potential risks of using a bankruptcy prediction model in real-world decision-making?
 
-Because bankruptcy is a highly imbalanced classification problem, accuracy is not used as the only performance measure.
+---
 
-## Candidate Model
+## 📊 Dataset Overview
 
-A tuned Random Forest model was retained as the current candidate model for deployment evaluation.
+| Attribute | Value |
+|---|---:|
+| Total Companies | 6,819 |
+| Original Predictors | 95 |
+| Predictors After Constant-Feature Removal | 94 |
+| Bankrupt Companies | 220 |
+| Non-Bankrupt Companies | 6,599 |
+| Bankruptcy Rate | 3.23% |
+| Missing Values | 0 |
+| Duplicate Rows | 0 |
 
-Test-set metrics:
+### Target Variable
 
-- Accuracy: 87.24%
-- Precision: 18.45%
-- Recall: 86.36%
-- F1-Score: 30.40%
-- ROC-AUC: 94.51%
-- PR-AUC: 38.71%
+`Bankrupt?`
 
-These results should be interpreted in the context of class imbalance and the business cost of false positives and false negatives.
+- `0` → Non-Bankrupt
+- `1` → Bankrupt
 
-## Key Financial Indicators
+The dataset contains financial indicators covering areas such as:
 
-Tree-based feature importance highlighted indicators including:
+- Profitability
+- Growth
+- Liquidity
+- Solvency and leverage
+- Efficiency
+- Cash flow
+- Working capital
+- Per-share financial measures
 
-- Persistent EPS in the Last Four Seasons
-- Borrowing Dependency
-- Non-industry income and expenditure/revenue
-- Retained Earnings to Total Assets
-- Total debt/Total net worth
-- Equity to Liability
-- Net Income to Stockholder's Equity
-- Net Value Per Share (B)
-- Quick Ratio
-- ROA(C) before interest and depreciation before tax
+---
 
-Feature importance represents predictive contribution in the model and should not be interpreted as causal evidence.
+## 🔎 Exploratory Data Analysis
 
-## Project Files
+The exploratory analysis includes:
 
-- `Predicting_Company_Bankruptcies.ipynb` — complete analysis and modelling workflow
-- `requirements.txt` — Python dependencies
+- Dataset structure and descriptive statistics
+- Missing-value analysis
+- Duplicate-value checks
+- Target-class distribution
+- Distribution analysis of financial indicators
+- Class-wise financial comparisons
+- Target correlation analysis
+- Predictor correlation analysis
+- Multicollinearity assessment
+- Identification of highly correlated predictors
+- Constant-feature removal
 
-## Tools & Technologies
+A constant feature, `Net Income Flag`, was removed during data preparation.
 
-Python, Pandas, NumPy, Matplotlib, Seaborn, Scikit-learn, Imbalanced-learn, Jupyter Notebook, Power BI, and Streamlit.
+---
 
-## Disclaimer
+## ⚖️ Class Imbalance
 
-This project is intended for analytical and educational purposes. Model predictions should be treated as decision-support information and should not be used as the sole basis for high-impact financial decisions.
+Bankruptcy is a highly imbalanced classification problem:
+
+- Non-bankrupt companies: **96.77%**
+- Bankrupt companies: **3.23%**
+- Approximate imbalance ratio: **30:1**
+
+To address this issue, undersampling was applied **only to the training data**.
+
+The test set was kept representative of the original class distribution to provide a more realistic evaluation of model performance.
+
+Because of the imbalance, accuracy was not considered sufficient on its own. Precision, recall, F1-score, ROC-AUC, and PR-AUC were also considered.
+
+---
+
+## 🤖 Machine Learning Workflow
+
+The project follows an end-to-end modelling workflow:
+
+```text
+Raw Financial Data
+        ↓
+Data Understanding & Quality Checks
+        ↓
+Exploratory Data Analysis
+        ↓
+Correlation & Multicollinearity Analysis
+        ↓
+Feature Selection
+        ↓
+Train/Test Split
+        ↓
+Training-Only Class Balancing
+        ↓
+Baseline Models
+        ↓
+Model Evaluation
+        ↓
+Voting Classifiers
+        ↓
+Hyperparameter Optimization
+        ↓
+Tuned Model Evaluation
+        ↓
+Feature Importance & Error Analysis
+        ↓
+Candidate Model
+        ↓
+Deployment Preparation
